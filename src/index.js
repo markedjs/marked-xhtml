@@ -1,24 +1,26 @@
-export default function(options = {}) {
+export function markedXhtml() {
   // extension code here
 
   return {
-    tokenizer: {
-      paragraph(src) {
-        if (src !== 'example markdown') {
-          return false;
-        }
-
-        const token = {
-          type: 'paragraph',
-          raw: src,
-          text: 'example html',
-          tokens: []
-        };
-
-        this.lexer.inline(token.text, token.tokens);
-
-        return token;
+    renderer: {
+      hr(...args) {
+        return addSlash(this, 'hr', ...args);
+      },
+      br(...args) {
+        return addSlash(this, 'br', ...args);
+      },
+      image(...args) {
+        return addSlash(this, 'image', ...args);
+      },
+      checkbox(...args) {
+        return addSlash(this, 'checkbox', ...args);
       }
     }
   };
+}
+
+function addSlash(renderer, name, ...args) {
+  const html = renderer.constructor.prototype[name].call(renderer, ...args);
+  // add slash before last `>`
+  return html.replace(/>[^>]*$/, '/$&');
 }

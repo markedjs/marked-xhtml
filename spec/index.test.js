@@ -1,18 +1,43 @@
 import { marked } from 'marked';
-import thisExtension from '../src/index.js';
+import { markedXhtml } from '../src/index.js';
 
-describe('this-extension', () => {
+describe('xhtml', () => {
   beforeEach(() => {
     marked.setOptions(marked.getDefaults());
   });
 
-  test('no options', () => {
-    marked.use(thisExtension());
-    expect(marked('example markdown')).toBe('<p>example html</p>\n');
+  test('hr', () => {
+    marked.use(markedXhtml());
+    expect(marked.parse('---')).toMatchInlineSnapshot(`
+"<hr/>
+"
+`);
   });
 
-  test('markdown not using this extension', () => {
-    marked.use(thisExtension());
-    expect(marked('not example markdown')).not.toBe('<p>example html</p>\n');
+  test('br', () => {
+    marked.use(markedXhtml());
+    marked.use({ breaks: true });
+    expect(marked.parse('add\nbreak')).toMatchInlineSnapshot(`
+"<p>add<br/>break</p>
+"
+`);
+  });
+
+  test('checkbox', () => {
+    marked.use(markedXhtml());
+    expect(marked.parse('- [x] checkbox')).toMatchInlineSnapshot(`
+"<ul>
+<li><input checked="" disabled="" type="checkbox"/> checkbox</li>
+</ul>
+"
+`);
+  });
+
+  test('image', () => {
+    marked.use(markedXhtml());
+    expect(marked.parse('![image](test.png)')).toMatchInlineSnapshot(`
+"<p><img src="test.png" alt="image"/></p>
+"
+`);
   });
 });

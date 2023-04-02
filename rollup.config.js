@@ -2,7 +2,7 @@ export default [
   {
     input: 'src/index.js',
     output: {
-      name: '|thisExtension|',
+      name: 'markedXhtml',
       file: 'lib/index.umd.js',
       format: 'umd',
       globals: {
