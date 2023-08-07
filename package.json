@@ -1,6 +1,6 @@
 {
   "name": "marked-xhtml",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "marked xhtml",
   "main": "./lib/index.cjs",
   "module": "./src/index.js",
