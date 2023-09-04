@@ -27,7 +27,7 @@ describe('xhtml', () => {
     marked.use(markedXhtml());
     expect(marked.parse('- [x] checkbox')).toMatchInlineSnapshot(`
 "<ul>
-<li><input checked="" disabled="" type="checkbox"/> checkbox</li>
+<li><input checked="" disabled="" type="checkbox"/>checkbox</li>
 </ul>
 "
 `);
