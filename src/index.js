@@ -2,6 +2,7 @@ export function markedXhtml() {
   // extension code here
 
   return {
+    useNewRenderer: true,
     renderer: {
       hr(...args) {
         return addSlash(this, 'hr', ...args);
