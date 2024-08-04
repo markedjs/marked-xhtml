@@ -15,8 +15,8 @@ export function markedXhtml() {
       },
       checkbox(...args) {
         return addSlash(this, 'checkbox', ...args);
-      }
-    }
+      },
+    },
   };
 }
 
