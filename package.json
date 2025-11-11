@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/markedjs/marked-xhtml#readme",
   "peerDependencies": {
-    "marked": ">=4 <17"
+    "marked": ">=4 <18"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
